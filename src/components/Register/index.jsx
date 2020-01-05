@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -6,33 +6,39 @@ import {
   Input,
   Tooltip,
   Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
   Button,
-  AutoComplete,
 } from 'antd';
 
 import './style.scss'
 
 const Register = props => {
-  const { getFieldDecorator } = props.form;
-  const validateToNextPassword = () => {
-
+  const { getFieldDecorator } = props.form
+  const [confirmDirty, setConfirmDirty] = useState()
+  const { handleClick, validateToNextPassword, compareToFirstPassword, handleConfirmBlur } = props
+  /*const validateToNextPassword = (rule, value, callback) => {
+    const { form } = props
+    if (value && confirmDirty) {
+      form.validateFields(['confirm'], { force: true })
+    }
+    callback()
   }
-  const compareToFirstPassword = () => {
-
+  const compareToFirstPassword = (rule, value, callback) => {
+    const { form } = props;
+    if (value && value !== form.getFieldValue('password')) {
+      callback('Оба пароля не совпадают');
+    } else {
+      callback();
+    }
   }
-  const handleConfirmBlur = () => {
-
-  }
+  const handleConfirmBlur = e => {
+    const { value } = e.target;
+    setConfirmDirty({ confirmDirty: confirmDirty || !!value });
+  }*/
 
   return (
     <div className="register">
       <h3>Регистрация пользователя</h3>
-      <Form >
+      <Form onSubmit={handleClick}>
         <Form.Item label={
           <span>
             Логин&nbsp;
@@ -44,7 +50,7 @@ const Register = props => {
           {getFieldDecorator('login', {
             rules: [
               {
-                type: 'text',
+                //type: 'text',
                 message: 'Логин обязателен для заполнения',
               },
               {
@@ -133,7 +139,7 @@ const Register = props => {
 }
 
 Register.propTypes = {
-
+  handleClick: PropTypes.func
 }
 
 export default Form.create({ name: 'register' })(Register)
