@@ -1,0 +1,11 @@
+.header {
+  &__avatar {
+    padding: 5px 6px;
+    border-radius: 50%;
+    text-shadow: mix(#000000, #000000, 0.8);
+  }
+  &__name {
+    padding-left: 10px;
+    cursor: pointer;
+  }
+}

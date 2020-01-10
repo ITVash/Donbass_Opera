@@ -1,0 +1,22 @@
+.header {
+  background: rgb(102, 102, 255);
+  padding: 15px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__info {
+    display: flex;
+    align-items: center;
+  }
+  &__brand {
+    width: 170px;
+  }
+}
+.content {
+  background: rgb(240, 240, 255);
+  //color: #a7aaec;
+  color: #373737;
+  height: 500px;
+  padding: 15px;
+}
