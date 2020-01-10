@@ -1,42 +1,48 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
+import { useHistory } from 'react-router-dom'
 
-import { Form, Input, Tooltip, Icon, Button } from "antd";
+import { Form, Input, Tooltip, Icon, Button } from "antd"
 
-import Loading from "../Loading";
+import Loading from "../Loading"
 
-import "./style.scss";
+import "./style.scss"
 
 const Register = props => {
 	const { getFieldDecorator } = props.form;
 	const [confirmDirty, setConfirmDirty] = useState();
 	const { handleClick, loading } = props;
+	const history = useHistory()
 	const handle = e => {
-		e.preventDefault();
+		e.preventDefault()		
 		props.form.validateFieldsAndScroll((err, values) => {
 			if (!err) {
 				handleClick(values);
-			} else console.error(`Ошибка регистрации!!!`);
+				if (!loading) {
+					props.form.resetFields()
+					history.push("/")
+				}
+			} else console.error(`Ошибка регистрации!!!`)
 		});
 	};
 	const validateToNextPassword = (rule, value, callback) => {
-		const { form } = props;
+		const { form } = props
 		if (value && confirmDirty) {
-			form.validateFields(["confirm"], { force: true });
+			form.validateFields(["confirm"], { force: true })
 		}
-		callback();
+		callback()
 	};
 	const compareToFirstPassword = (rule, value, callback) => {
-		const { form } = props;
+		const { form } = props
 		if (value && value !== form.getFieldValue("password")) {
-			callback("Оба пароля не совпадают");
+			callback("Оба пароля не совпадают")
 		} else {
-			callback();
+			callback()
 		}
 	};
 	const handleConfirmBlur = e => {
-		const { value } = e.target;
-		setConfirmDirty({ confirmDirty: confirmDirty || !!value });
+		const { value } = e.target
+		setConfirmDirty({ confirmDirty: confirmDirty || !!value })
 	};
 
 	return (

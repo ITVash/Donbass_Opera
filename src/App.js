@@ -1,12 +1,11 @@
 import React from 'react';
 
-//import { Register } from './components'
-import { Register } from './containers'
+import { Login } from './containers'
 
 const App = () => {
   return (
     <div className="App">
-      <Register />
+      <Login />
     </div>
   );
 }
