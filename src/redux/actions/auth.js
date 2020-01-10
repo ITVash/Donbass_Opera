@@ -1,11 +1,15 @@
 import { auth } from '../../api'
 
 const actions = {
-  register: async data => {
+  isLoading: load => ({
+    type: 'AUTH:IS_LOADING',
+    payload: load
+  }),
+  register: data => async dispatch => {
+    await dispatch(actions.isLoading(true))
     const reg = await auth.register(data)
-    const regObj = await reg.json()
     try {
-      console.log('regObj', regObj)
+      await dispatch(actions.isLoading(false))
       console.log('Ответ от сервера', reg)
     } catch (err) {
       console.error(`Что-то пошло не так: ${err}`)
