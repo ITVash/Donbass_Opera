@@ -21,8 +21,8 @@ const actions = {
   },
   login: data => async dispatch => {
     await dispatch(actions.isLoading(true))
-    const login = await auth.login(data)
     try {
+      const login = await auth.login(data)
       const log = await login.data
       const obj = {
         login: log.login,
@@ -34,8 +34,11 @@ const actions = {
       localStorage.setItem('token', log.token)
       await dispatch(actions._login(obj))
       await dispatch(actions.isLoading(false))
+      return true
     } catch (err) {
+      await dispatch(actions.isLoading(false))
       console.error(`Ошибка запросов ${err}`)
+      return false
     }
   },
 

@@ -1,18 +1,22 @@
 import React from 'react'
 import md5 from 'md5'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import { Login as BaseLogin } from '../../components'
 import { AuthAction } from '../../redux/actions'
 
 const Login = props => {
+  const history = useHistory()
   const { loading, login } = props
   const logIn = values => {
     const obj = {
       login: values.login,
       password: md5(values.password)
     }
-    login(obj)
+    const res = login(obj)
+    console.log('res', res)
+    if (res) history.push('/')
   }
   return (
     <BaseLogin handleLogin={logIn} loading={loading} />
