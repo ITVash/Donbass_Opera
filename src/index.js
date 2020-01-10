@@ -15,7 +15,6 @@ window.store = store
 const token = localStorage.getItem('token')
 if (token) {
   const dec = jwtDecode(token)
-  console.log('dec', dec)
   if (dec.exp * 1000 > Date.now()) {
     const data = dec.user[0]
     const obj = {

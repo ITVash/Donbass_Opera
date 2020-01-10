@@ -9,13 +9,12 @@ import { AuthAction } from '../../redux/actions'
 const Login = props => {
   const history = useHistory()
   const { loading, login } = props
-  const logIn = values => {
+  const logIn = async values => {
     const obj = {
       login: values.login,
       password: md5(values.password)
     }
-    const res = login(obj)
-    console.log('res', res)
+    const res = await login(obj)
     if (res) history.push('/')
   }
   return (

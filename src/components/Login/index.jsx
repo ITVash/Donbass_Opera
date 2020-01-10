@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Icon, Input, Button } from 'antd'
+import { Link } from 'react-router-dom'
 
 import Loading from '../Loading'
 
@@ -50,9 +51,9 @@ const Login = props => {
 						block>
 						Войти
 					</Button>
-					<span>
-						или <span>Зарегистрироваться</span>
-					</span>
+					<center>
+						<Link to='/register'>Зарегистрироваться</Link>
+					</center>
 				</Form.Item>
 			</Form>
 		</>

@@ -11,12 +11,14 @@ const actions = {
   }),
   register: data => async dispatch => {
     await dispatch(actions.isLoading(true))
-    const reg = await auth.register(data)
     try {
+      const reg = await auth.register(data)
       await dispatch(actions.isLoading(false))
       console.log('Ответ от сервера', reg)
+      return true
     } catch (err) {
       console.error(`Что-то пошло не так: ${err}`)
+      return false
     }
   },
   login: data => async dispatch => {

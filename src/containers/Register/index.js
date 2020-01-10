@@ -1,13 +1,15 @@
 import React from 'react'
 import md5 from 'md5'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import { AuthAction } from '../../redux/actions'
 import { Register as BaseRegister } from '../../components'
 
 const Register = props => {
   const { loading, register } = props
-  const click = e => {
+  const history = useHistory()
+  const click = async e => {
     const form = e
     const obj = {
       login: form.login,
@@ -18,7 +20,8 @@ const Register = props => {
       access: 1,
       smena: 0
     }
-    register(obj)
+    const res = await register(obj)
+    if (res) history.push('/login')
   }
   return <BaseRegister handleClick={click} loading={loading} />
 }
