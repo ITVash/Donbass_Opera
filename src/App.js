@@ -7,7 +7,7 @@ import { AuthAction } from './redux/actions'
 
 const App = props => {
 	const { access } = props;
-
+	console.log('object', process.env.REACT_APP_PUBLIC_VAPID_KEY)
 	return (
 		<div className='App'>
 			<Switch>
