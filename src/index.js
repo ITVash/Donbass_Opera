@@ -28,7 +28,8 @@ if (token) {
     }
     store.dispatch(AuthAction._login(obj))
   } else {
-    localStorage.removeItem('token')
+    //localStorage.removeItem('token')
+    store.dispatch(AuthAction.logout())
   }
 }
 

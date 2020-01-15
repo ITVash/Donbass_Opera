@@ -9,6 +9,19 @@ const actions = {
     type: 'AUTH:LOGIN',
     payload: data
   }),
+  _logout: () => ({
+    type: 'AUTH:LOGOUT',
+  }),
+  logout: () => async dispatch => {
+    await dispatch(actions.isLoading(true))
+    localStorage.removeItem('token')
+    await dispatch(actions._logout())
+    try {
+      await dispatch(actions.isLoading(false))
+    } catch (err) {
+      console.error(`Ошибка при выходе!`, err)
+    }
+  },
   register: data => async dispatch => {
     await dispatch(actions.isLoading(true))
     try {

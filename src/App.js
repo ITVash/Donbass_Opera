@@ -7,7 +7,6 @@ import { AuthAction } from './redux/actions'
 
 const App = props => {
 	const { access } = props;
-	console.log('object', process.env)
 	return (
 		<div className='App'>
 			<Switch>

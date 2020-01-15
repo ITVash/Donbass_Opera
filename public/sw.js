@@ -9,25 +9,16 @@ self.addEventListener('push', event => {
   );
 })
 
-self.addEventListener('notificationclick', async e => {
-  const url = await 'https://donbassoperatable.web.app'
-  const notifi = await e.notification
-  const primaryKey = await notifi.data.primaryKey
-  const action = await e.action
+self.addEventListener('notificationclick', e => {
+  const url = 'https://donbassoperatable.web.app'
+  const notifi = e.notification
+  //const primaryKey = await notifi.data.primaryKey
+  const action = e.action
   if (action === 'close') {
     notifi.close()
   } else {
-    clients.openWindow(url)
+    clients.openWindow(url);
     notifi.close()
   }
-	//e.notification.close();
-	
-	//const clientList = await clients.matchAll();
-	/*for (var i = 0; i < clientList.length; i++) {
-		var client = clientList[i];
-		if (client.url == '' && 'focus' in client) {
-			return await client.focus();
-		}
-	}*/
-	return await clients.openWindow(url);
+	return clients.openWindow(url);
 });
