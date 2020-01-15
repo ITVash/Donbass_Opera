@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 //import { withRouter } from 'react-router-dom'
 
 import { AuthAction, NotifiAction } from '../../redux/actions'
-import { AuthInfo, Loading } from '../../components'
+import { AuthInfo, Loading, Table } from '../../components'
 import "./style.scss"
 
 const Home = props => {
@@ -19,7 +19,7 @@ const Home = props => {
         </div>
       </header>
       <section className='content'>
-        тут у нас контент
+        <Table />
       </section>
 		</>
 	)

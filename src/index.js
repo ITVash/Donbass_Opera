@@ -14,6 +14,10 @@ import store from './redux/store'
 import { AuthAction } from './redux/actions'
 window.store = store
 
+/*Date.prototype.dayIsMonth = () => {
+  return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate()
+}*/
+
 const token = localStorage.getItem('token')
 if (token) {
   const dec = jwtDecode(token)
